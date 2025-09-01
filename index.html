@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Fairy Pixel Tracker ✨</title>
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#ff7bd3">
-  <link rel="stylesheet" href="styles.css?v=7">
+  <link rel="stylesheet" href="styles.css?v=1">
   <link href="https://fonts.googleapis.com/css2?family=Micro+5&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -15,19 +15,96 @@
   </header>
 
   <main class="layout">
-    <div class="time-column" id="time-col"></div>
-    <div class="activity-column" id="act-col"></div>
-    <div class="controls">
-      <button id="btn-activities">Activities</button>
-      <button id="btn-stats">Stats</button>
-      <button id="btn-export">Export</button>
-      <button id="btn-import">Import</button>
-      <button id="btn-reminders">Reminders</button>
+    <div class="columns">
+      <div class="time-column" id="time-col"></div>
+      <div class="activity-column" id="act-col"></div>
     </div>
+
+    <aside class="controls">
+      <div class="picker">
+        <div class="picker-title">Current</div>
+        <input id="current-color" type="color" value="#ff7bd3" title="Current activity color"/>
+        <button id="apply-to-all" class="outline small">Fill empty</button>
+      </div>
+      <div class="control-group">
+        <button class="outline" id="open-activities">Activities</button>
+        <button class="outline" id="open-stats">Stats</button>
+        <button class="outline" id="open-reminders">Reminders</button>
+        <button class="outline" id="do-export">Export</button>
+        <label class="outline filelike">
+          Import<input type="file" id="do-import" accept=".json"/>
+        </label>
+        <button class="outline" id="open-help">Help</button>
+      </div>
+      <div class="day-meta">
+        <label>Rating <input id="day-rating" type="number" min="1" max="10" /></label>
+        <label>Moods <input id="day-moods" type="text" placeholder="happy, focused"/></label>
+        <div class="date-nav">
+          <button id="prev-day" class="outline small">◀</button>
+          <input type="date" id="date-picker"/>
+          <button id="next-day" class="outline small">▶</button>
+        </div>
+      </div>
+    </aside>
   </main>
 
-  <input type="file" id="import-file" style="display:none" />
+  <!-- Activities Modal -->
+  <dialog id="activities-modal">
+    <form method="dialog" class="modal">
+      <h2>Activities</h2>
+      <div class="activities-list" id="activities-list"></div>
+      <div class="activity-form">
+        <input id="act-id" placeholder="ID (e.g., 1)"/>
+        <input id="act-name" placeholder="Name (e.g., Sleep)"/>
+        <input id="act-color" type="color" value="#ff7bd3"/>
+        <label><input type="checkbox" id="act-fav"/> Quick pick</label>
+        <button type="button" id="save-activity" class="outline">Save/Update</button>
+      </div>
+      <menu><button class="outline" value="cancel">Close</button></menu>
+    </form>
+  </dialog>
 
-  <script src="app.js?v=7" defer></script>
+  <!-- Stats Modal -->
+  <dialog id="stats-modal">
+    <form method="dialog" class="modal">
+      <h2>Stats</h2>
+      <div class="row">
+        <label>From <input type="date" id="stats-from"></label>
+        <label>To <input type="date" id="stats-to"></label>
+        <button type="button" id="refresh-stats" class="outline">Refresh</button>
+      </div>
+      <canvas id="stats-chart" width="360" height="240"></canvas>
+      <div id="stats-table"></div>
+      <menu><button class="outline" value="cancel">Close</button></menu>
+    </form>
+  </dialog>
+
+  <!-- Reminders Modal -->
+  <dialog id="reminders-modal">
+    <form method="dialog" class="modal">
+      <h2>Reminders</h2>
+      <label><input type="checkbox" id="rem-enabled"/> Enable</label>
+      <label>Every <input type="number" id="rem-interval" min="5" value="30" step="5"> minutes</label>
+      <menu>
+        <button type="button" id="apply-reminders" class="outline">Apply</button>
+        <button class="outline" value="cancel">Close</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <!-- Help Modal -->
+  <dialog id="help-modal">
+    <form method="dialog" class="modal">
+      <h2>Help</h2>
+      <ul>
+        <li>Pick a color and tap squares in the right column to fill half-hours.</li>
+        <li>Use Activities to save named colors for quick picking.</li>
+        <li>Export regularly; Import to restore/sync across devices.</li>
+      </ul>
+      <menu><button class="outline" value="cancel">Close</button></menu>
+    </form>
+  </dialog>
+
+  <script src="app.js?v=1" defer></script>
 </body>
 </html>
