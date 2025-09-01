@@ -1,3 +1,7 @@
+// app.js (top or DOMContentLoaded)
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./service-worker.js?v=7");
+}
 document.addEventListener('DOMContentLoaded', ()=>{
   // Display today's date
   const today = new Date();
