@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Half-Hour Tracker</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#111827">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="date-controls">
+      <button id="prev-day" title="Previous day">◀</button>
+      <input type="date" id="date-picker">
+      <button id="next-day" title="Next day">▶</button>
+    </div>
+    <div class="actions">
+      <button id="open-activities">Activities</button>
+      <button id="open-stats">Stats</button>
+      <button id="open-reminders">Reminders</button>
+      <button id="export-data">Export</button>
+      <label class="import-label">
+        Import <input type="file" id="import-data" accept=".json"/>
+      </label>
+      <button id="help-btn">Help</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="left-pane">
+      <div class="quick-picker" id="quick-picker">
+        <!-- populated dynamically with favorite activities -->
+      </div>
+      <div class="day-meta">
+        <div>
+          <label>Day rating (1–10):</label>
+          <input type="number" id="day-rating" min="1" max="10" step="1">
+        </div>
+        <div>
+          <label>Mood tags (comma-separated):</label>
+          <input type="text" id="mood-tags" placeholder="happy, focused, tired">
+        </div>
+      </div>
+      <div class="legend" id="legend">
+        <!-- Activities legend -->
+      </div>
+      <div class="legend-actions">
+        <button id="add-activity">+ Add Activity</button>
+        <button id="reset-day" class="danger">Clear Day</button>
+      </div>
+    </section>
+
+    <section class="grid-pane">
+      <div class="grid" id="grid">
+        <!-- 48 rows will be injected -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Activities Modal -->
+  <dialog id="activities-modal">
+    <form method="dialog" class="modal">
+      <h2>Activities Manager</h2>
+      <p class="hint">Tip: keep IDs short numbers or codes. Colors are used on the grid.</p>
+      <div id="activities-list" class="activities-list"></div>
+      <div class="activity-form">
+        <input id="act-id" placeholder="ID (e.g., 1)">
+        <input id="act-name" placeholder="Name (e.g., Sleep)">
+        <input id="act-emoji" placeholder="Emoji (optional) 😴" maxlength="2">
+        <input id="act-color" type="color" value="#6b7280">
+        <label><input type="checkbox" id="act-favorite"> Quick picker</label>
+        <button id="save-activity" type="button">Save / Update</button>
+      </div>
+      <menu>
+        <button value="cancel">Close</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <!-- Stats Modal -->
+  <dialog id="stats-modal">
+    <form method="dialog" class="modal">
+      <h2>Stats</h2>
+      <div class="stats-controls">
+        <label>From: <input type="date" id="stats-from"></label>
+        <label>To: <input type="date" id="stats-to"></label>
+        <button id="refresh-stats" type="button">Refresh</button>
+      </div>
+      <div class="stats-output">
+        <canvas id="stats-chart" width="340" height="240"></canvas>
+        <div id="stats-table"></div>
+      </div>
+      <menu>
+        <button value="cancel">Close</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <!-- Reminders Modal -->
+  <dialog id="reminders-modal">
+    <form method="dialog" class="modal">
+      <h2>Reminders</h2>
+      <p>Enable a gentle nudge every 30 minutes to log what you're doing.</p>
+      <label><input type="checkbox" id="reminders-enabled"> Enable reminders</label>
+      <div>
+        <label>Frequency (minutes): <input type="number" id="reminder-interval" value="30" min="5" step="5"></label>
+      </div>
+      <p class="hint">Notifications need permission and work best when the app is open, or as a PWA on your home screen.</p>
+      <menu>
+        <button id="apply-reminders" type="button">Apply</button>
+        <button value="cancel">Close</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <!-- Help Modal -->
+  <dialog id="help-modal">
+    <form method="dialog" class="modal">
+      <h2>How to Use</h2>
+      <ul>
+        <li>Select a date (or use ◀ ▶).</li>
+        <li>Pick an activity in the legend or quick picker, then tap/drag across time slots.</li>
+        <li>Set your day's rating and mood tags.</li>
+        <li>Use Stats to see totals between dates.</li>
+        <li>Export your data JSON or CSV; Import to restore.</li>
+        <li>Add to Home Screen (PWA) for a mobile-like app.</li>
+      </ul>
+      <menu>
+        <button value="cancel">Close</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
