@@ -1,1 +1,12 @@
-body { background: #2a103a; color: #ffeaff; font-family: Inter, sans-serif; }
+:root {
+  --bg:#2a103a; --panel:#3a1750; --panel-2:#4b1d67;
+  --text:#ffeaff; --accent:#ff7bd3; --pixel-border:2px;
+}
+body { margin:0; font-family:Inter,sans-serif; background:var(--bg); color:var(--text); }
+.topbar { display:flex; align-items:center; gap:8px; padding:10px; background:var(--panel); }
+.menu-btn { background:var(--panel-2); border:var(--pixel-border) solid var(--accent); color:var(--text); }
+.container { display:grid; grid-template-columns:320px 1fr; gap:12px; padding:12px; }
+.left-pane,.grid-pane { background:var(--panel); border:var(--pixel-border) solid var(--accent); padding:12px; }
+.grid { display:grid; grid-template-columns:80px 1fr; gap:2px; }
+.time-cell { background:var(--panel-2); padding:4px; font-size:12px; text-align:center; }
+.slot-cell { height:26px; border:var(--pixel-border) solid var(--accent); background:#4b1d67; }
