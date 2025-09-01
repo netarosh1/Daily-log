@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Fairy Pixel Tracker ✨</title>
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#ff7bd3">
@@ -25,7 +25,7 @@
       <div class="quick-picker" id="quick-picker"></div>
       <div class="day-meta">
         <div><label>Day rating: <input type="number" id="day-rating" min="1" max="10"></label></div>
-        <div><label>Mood tags: <input type="text" id="mood-tags" placeholder="💖 happy, ✨ creative"></label></div>
+        <div><label>Mood tags: <input type="text" id="mood-tags"></label></div>
       </div>
       <h3 class="legend-title">Activities</h3>
       <div class="legend" id="legend"></div>
@@ -38,13 +38,6 @@
       <div class="grid" id="grid"></div>
     </section>
   </main>
-  <dialog id="help-modal">
-    <form method="dialog" class="modal">
-      <h2>🧁 Help</h2>
-      <ul><li>Pick an activity → tap slots</li><li>Use ⭐ Quick Picker for faves</li></ul>
-      <menu><button value="cancel">Close</button></menu>
-    </form>
-  </dialog>
   <script src="app.js"></script>
 </body>
 </html>
