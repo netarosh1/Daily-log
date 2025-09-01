@@ -9,7 +9,7 @@ body{
   padding:60px;
   font-family:"Micro 5", monospace;
   color:#fff;
-  background:url("bg.png?v=2") center/cover no-repeat fixed;
+  background:url("./icons/bg.png?v=3") center/cover no-repeat fixed;
 }
 .topbar{ text-align:center; margin-bottom:30px; }
 .date-label{ font-size:40px; text-shadow:2px 2px 0 #000; }
