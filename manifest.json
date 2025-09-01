@@ -1,18 +1,13 @@
 {
-  "name": "Half-Hour Tracker",
-  "short_name": "HHT",
+  "name": "Fairy Pixel Tracker",
+  "short_name": "PixelTracker",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#0b1220",
-  "theme_color": "#111827",
+  "background_color": "#2a103a",
+  "theme_color": "#ff7bd3",
   "icons": [
     {
-      "src": "icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "icons/icon-512.png",
+      "src": "icons/bg.png",
       "sizes": "512x512",
       "type": "image/png"
     }
